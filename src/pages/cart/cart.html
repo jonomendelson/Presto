@@ -1,0 +1,125 @@
+<!--
+  Generated template for the CartPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+  	<div *ngIf="!isCurrent">
+	    <ion-buttons start> 
+	      <button ion-button id="backButton" (click)="navCtrl.pop();"><ion-icon name="close" style="font-size:32px;"></ion-icon></button>
+	    </ion-buttons>
+	</div>
+    <ion-title>Cart</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="dark">
+	<div class="cartDisplay">
+		<div class="restaurantName">
+			{{rname}}
+		</div>
+		<div class="orderType">
+			<div *ngIf="table !== 'pickup'">Table {{table}}</div>
+			<div *ngIf="table === 'pickup'">Pickup</div>
+		</div><hr>
+		<div class="itemBox" *ngFor="let i of cart">
+			<div class="itemContainer">
+				<div class="itemName itemNameFixedWidth">
+					{{menu[i.key].name}}
+					<div *ngIf="menu[i.key].noDiscount != null && menu[i.key].noDiscount === 1" class="noDiscount">
+						&nbsp;[NO DISCOUNT]
+					</div>
+				</div>
+				<!--<div class="itemQuantity">x{{i.quantity}}</div>-->
+				<div class="itemPrice">${{(menu[i.key].price).toFixed(2)}}</div>
+			</div>
+			<div *ngIf="i.options != null && i.options.length !== 0">
+				<div *ngFor="let o of i.options">
+					<div class="itemContainer">
+						<div class="optionName">{{menu[o].name}}</div>
+						<div class="itemPrice">+${{(menu[o].price).toFixed(2)}}</div>
+					</div>
+				</div>
+			</div>
+			<div *ngIf="i.message != null && i.message !== ''">
+				<div class="itemContainer">
+					<div class="optionName">{{i.message}}</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="">
+			<div class="itemName messageLabel">Message</div>
+			<input class="messageInput" type="text" placeholder="Allergies, etc." [(ngModel)]="message">
+		</div>
+		<hr>
+		<div class="itemContainer">
+			<div class="itemName">Subtotal</div>
+			<div class="itemPrice">${{(puresubtotal).toFixed(2)}}</div>
+		</div>
+		<div class="itemContainer">
+			<div class="itemName">Tax & Fees</div>
+			<div class="itemQuantity">@{{taxRate.toFixed(2)}}%</div>
+			<div class="itemPrice">${{(puresubtotal * taxRate/100).toFixed(2)}}</div>
+		</div>
+		<div class="itemContainer discountContainer">
+			<div class="itemName" style="font-family:'WorkSans-Bold';">Presto Discount</div>
+			<div class="itemQuantity" style="margin-top:0px;">@{{discountRate}}%</div>
+			<div class="itemPrice" style="font-family:'WorkSans-Bold'; font-size:133%; margin-top:-3px;">-${{discountDollars.toFixed(2)}}</div>
+		</div>
+		<hr>
+		<div class="tipButtons">
+			<div id="tip15" [class]="tip15" style="margin-right:calc(33.3% - 67px);" (click)="setTip(15);">15%</div>
+			<div id="tip18" [class]="tip18" style="margin-right:calc(33.3% - 67px);" (click)="setTip(18);">18%</div>
+			<div id="tip20" [class]="tip20" style="margin-right:calc(33.3% - 67px);" (click)="setTip(20);">20%</div>
+			<div id="tipCustom" [class]="tipCustom" (click)="setCustomTip();">$</div>
+		</div>
+		<div class="itemContainer tipContainer">
+			<div class="itemName">Tip</div>
+			<div class="itemQuantity">@{{tipRate.toFixed(2)}}%</div>
+			<div class="itemPrice">${{(puresubtotal * tipRate/100).toFixed(2)}}</div>
+		</div>
+		
+
+		<div class="paymentMethodButtons">
+			<div id="payCard" [class]="payCard" style="margin-left:calc(25% - 62.5px); margin-right:calc(25% - 62.5px);" (click)="setPay('CARD');">Card</div>
+			<div *ngIf="isCurrent">
+				<div *ngIf="isActive">
+					<div id="payPoints" [class]="payPoints" style="margin-left:calc(25% - 62.5px); margin-right:calc(25% - 62.5px);" (click)="setPay('POINTS');">Points ({{global.readOnly.points}})</div>
+				</div>
+				<div *ngIf="!isActive">
+					<div id="payPoints" [class]="payPoints" style="margin-left:calc(25% - 62.5px); margin-right:calc(25% - 62.5px);" (click)="setPay('POINTS');">Points</div>
+				</div>
+			</div>
+			<div *ngIf="!isCurrent">
+				<div id="payPoints" [class]="payPoints" style="margin-left:calc(25% - 62.5px); margin-right:calc(25% - 62.5px);" (click)="setPay('POINTS');">Points</div>
+			</div>
+		</div>
+
+		<div class="itemContainer totalContainer" *ngIf="paymentSource=='CARD'">
+			<hr>
+			<div class="itemName totalText">Total</div>
+			<div class="itemPrice totalText">${{total.toFixed(2)}}</div>
+		</div>
+
+		<div class="itemContainer totalContainer" *ngIf="paymentSource=='POINTS'">
+			<hr>
+			<div class="itemName totalText">Total</div>
+			<div class="itemPrice totalText">{{pointsCost}} points</div>
+		</div>
+
+		
+
+	</div>
+</ion-content>
+
+<ion-footer>
+	<div *ngIf="isCurrent" class="orderButton" (click)="placeOrder()">
+		Place Order!
+	</div>
+</ion-footer>

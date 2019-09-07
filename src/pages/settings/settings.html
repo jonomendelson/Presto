@@ -1,0 +1,59 @@
+<!--
+  Generated template for the SettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar hideBackButton="true">
+    <ion-title>Settings</ion-title>
+    <ion-buttons end> 
+      <button ion-button id="backButton" (click)="rootHome()">Back&nbsp;<ion-icon name="arrow-forward" style="font-size:32px;"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+  
+</ion-header>
+
+
+<ion-content padding class="dark">
+	<div id="helpText" class="helpText" [style.display]="helpTextDisplay">
+		<!--<span style="font-size:125%;">Welcome to Presto!</span><br>-->
+		<div style="font-size:100%; font-family:'Lato-Light'; margin-bottom:10px;">Settings for <i>{{global.auth.email}}:</i></div>
+		<!--<ion-icon name="arrow-round-down" class="downArrow"></ion-icon>-->
+	</div>
+
+	<div class="settingsArea">
+		<div class="sectionWrapper">
+			<div class="sectionHeader">General Info</div>
+			<p class="note">Your name will be shared with restaurants.</p>
+			<hr>
+			<input type="text" class="inputBox" [(ngModel)]="name" (ngModelChange)="saveButtonDisplay='block';" id="nameInput" placeholder="Name">
+			<input type="text" class="inputBox" [(ngModel)]="phoneNumber" (ngModelChange)="saveButtonDisplay='block';" id="phoneNumberInput" placeholder="Phone Number">	
+		</div>
+
+		<div class="sectionWrapper" [style.display]="cardWrapperDisplay" style="margin-top:20px;">
+			<div class="sectionHeader">Payment</div>
+			<p class="note">Your credit or debit card will only be charged for food you order and is stored securely by Stripe.</p>
+			<hr>
+			<div class="cardArea" id="cardArea" [style.display]="cardAreaDisplay">
+				<input type="text" class="inputBox" [(ngModel)]="cardNumber" (ngModelChange)="saveButtonDisplay='block';" id="cardNumber" placeholder="Card Number">
+				<input type="text" class="inputBox exp" [(ngModel)]="cardExpMonth" (ngModelChange)="saveButtonDisplay='block';" id="cardMonth" placeholder="Exp. Month">
+				<input type="text" class="inputBox exp" [(ngModel)]="cardExpYear" (ngModelChange)="saveButtonDisplay='block';" id="cardYear" placeholder="Exp. Year">
+				<input type="text" class="inputBox cvc" [(ngModel)]="cardCVC" (ngModelChange)="saveButtonDisplay='block';" id="cardCVC" placeholder="CVC">
+			</div>
+			<div class="cardArea cardAreaLabel" id="cardLabel" [style.display]="cardLabelDisplay">
+				<div *ngIf="lastFourExists()">
+					<div id="cardLabelText">Card ending in {{global.user.lastFour}} is currently active on this account.<br><br></div>
+					<button ion-button (click)="unlinkCard();" style="color:#000000;" class="unlinkCardButton" id="unlinkCardButton">Unlink Card</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<button ion-button class="saveButton" (click)="saveSettings();" [style.display]="saveButtonDisplay">Save Settings</button>
+		<button ion-button class="signOutButton" id="signOutButton" [style.display]="signOutButtonDisplay" (click)="signOut();">Sign Out</button>
+		<div style="text-align:center;">Questions? Concerns? Get in touch at support@eatpresto.co.</div>
+	</div>
+	<div style="width:100%; height:500px;"></div>
+</ion-content>

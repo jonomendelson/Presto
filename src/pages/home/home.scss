@@ -1,0 +1,205 @@
+@font-face {
+    font-family: 'Lato-Light';
+    src: url('../assets/fonts/Lato-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato-Regular';
+    src: url('../assets/fonts/Lato-Regular.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'Lato-Bold';
+    src: url('../assets/fonts/Lato-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'WorkSans-Bold';
+    src: url('../assets/fonts/WorkSans-Bold.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'WorkSans-ExtraBold';
+    src: url('../assets/fonts/WorkSans-ExtraBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'WorkSans-Light';
+    src: url('../assets/fonts/WorkSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'WorkSans-Medium';
+    src: url('../assets/fonts/WorkSans-Medium.ttf') format('truetype');
+}
+
+
+page-home {
+	font-family: 'Lato-Regular';
+	.dark{
+		background-color:#eeeeee;
+	}
+	.toolbar-background{
+		background-color: white;
+	}
+	.toolbar{
+		font-family: 'Lato-Bold';
+	}
+	.restaurantBox{
+		background-color:white;
+		margin-bottom:10px;
+		height:310px;
+		width:100%;
+		margin-top:10px;
+		box-shadow: 3px 3px 5px #BBBBBB;
+	}
+	.restaurantBoxLabel{
+		padding-left:12px;
+	}
+	.restaurantBoxLabelName{
+		font-family:'Lato-Bold';
+		font-size:24px;
+	}
+	.restaurantBoxLabelAddress{
+		font-size:12px;
+		color:#888888;
+	}
+	.restaurantBoxImage{
+		height:225px;
+		width:calc(100% - 10px);
+		object-fit:cover;
+		margin:5px;
+	}
+	.restaurantSearch{
+		background-color:#FFFFFF;
+		padding:5px;
+		font-size:150%;
+		margin:0px;
+		margin-top:18px;
+		margin-bottom:25px;
+		width:100%;
+		border-radius:2px;
+	}
+	.discountBannerTriangle{
+		background-color:transparent;
+		width:150px;
+		margin-left:-49px;
+		margin-top:-11px;
+		transform: rotate(-45deg);
+		position:absolute;
+		border-left: 75px solid transparent;
+		border-right: 75px solid transparent;
+		border-bottom: 75px solid #DD5555;
+		color:black;
+		z-index:1;
+	}
+	.discountBannerTriangleEvery{
+		background-color:transparent;
+		width:150px;
+		margin-left:-49px;
+		margin-top:-11px;
+		transform: rotate(-45deg);
+		position:absolute;
+		border-left: 75px solid transparent;
+		border-right: 75px solid transparent;
+		border-bottom: 75px solid #59DE97;
+		color:black;
+		z-index:1;
+	}
+	.discountBannerAmount{
+		font-size:30px;
+		z-index:99;
+		position:absolute;
+		font-family: 'WorkSans-ExtraBold';
+		transform: rotate(-45deg);
+		width:100px;
+		margin-left:-7px;
+		margin-top:2px;
+	}
+	.discountBannerLabelSpacing{
+		position:absolute;
+		z-index:99;
+		font-family:'WorkSans-Medium';
+		transform: rotate(-45deg);
+		margin-left:-12px;
+		margin-top:42px;
+		font-size:8px;
+	}
+	.discountBannerLabel{
+		position:absolute;
+		z-index:99;
+		font-family:'WorkSans-Medium';
+		transform: rotate(-45deg);
+		margin-left:-8px;
+		margin-top:39px;
+		font-size:80%;
+	}
+	.searchBox{
+		width:100%;
+		border:none;
+		padding:5px;
+	}
+	.devPanel{
+		z-index:99;
+		width:100%;
+		height:100%;
+	}
+	.devTitle{
+		font-size:24px;
+		font-family:'WorkSans-Bold';
+	}
+	.devMessage{
+		font-size:14px;
+		font-family:'WorkSans-Light';
+	}
+	.restaurantTypeLabel{
+		font-size:16px;
+		font-family:'Lato-Light';
+		margin-bottom:1px;
+		margin-top:-1px;
+	}
+	.waitTimeLabel{
+		float:right;
+		margin-top:-18px;
+		margin-right:11px;
+		font-family:'WorkSans-Medium';
+		font-size:16px;
+	}
+	.regionNameLabel{
+		font-family:'WorkSans-Bold';
+		font-size:16px;
+		margin-top:25px;
+	}
+	.hoursLabel{
+		float:right;
+		margin-top:-32px;
+		margin-right:11px;
+		font-family:'WorkSans-Light';
+		font-size:14px;
+	}
+	.closedCover{
+		width:calc(100% - 32px);
+		height:310px;
+		background-color:#000000;
+		position:absolute;
+		opacity:0.4;
+		z-index:100;
+		color:#000000;
+	}
+	.hoursLabelClosed{
+		color:#FF0000;
+	}
+	.helpText{
+		font-size:85%;
+		font-family:Lato-Black;
+		color:#333333;
+		margin-bottom:15px;
+	}
+	.disclaimer{
+		font-size:80%;
+		font-family:'WorkSans-Light';
+		margin-top:20px;
+	}
+}

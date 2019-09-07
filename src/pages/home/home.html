@@ -1,0 +1,137 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start> 
+      <button ion-button icon-only (click)="pushSettings()" [style.display]="settingsButtonDisplay"><ion-icon name="cog" style="color:#777777;"></ion-icon></button>
+    </ion-buttons>
+    <ion-title>
+      Presto
+    </ion-title>
+    <ion-buttons end> 
+      <button ion-button icon-only (click)="pushProfile()" id="profileButton" [style.display]="profileButtonDisplay"><ion-icon name="contact" style="color:#777777;"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="dark">
+  <div class="devPanel" [style.display]="devPanelDisplay">
+    <div class="devTitle">Under Development</div>
+    <div class="devMessage">Presto is currently under development and is not accepting orders. We apologize for any inconvenience.</div>
+  </div>
+  <div class="devPanel" [style.display]="versionPanelDisplay">
+    <div class="devTitle">Update Required</div>
+    <div class="devMessage">Please update Presto on the App Store.</div>
+  </div>
+  <div [style.display]="contentDisplay">
+    <div class="helpText">
+      Problems with your order? Restaurant suggestions? Send us an email at <b>support@eatpresto.co</b> and we'll get back to you as soon as possible!
+    </div>
+    <hr>
+    <div id="restaurantSearch" class="restaurantSearch">
+      <input type="text" [(ngModel)]="search" class="searchBox" placeholder="Search...">
+    </div>
+    <div id="restaurantArea" [style.display]="restaurantAreaDisplay">
+      <div *ngFor="let reg of regions">
+
+        <div class="regionNameLabel">{{reg.name}}</div>
+        <div *ngFor="let r of restaurantInfo">
+          <div *ngIf="r.region === reg.key">
+            
+            <div class="restaurantBox" *ngIf="r.launched != null && r.launched === 1">
+              <div (click)="pushRestaurant(r.key, r.name)" *ngIf="(r.hours != null && !(currHour >= r.hours[day].start && currHour < r.hours[day].end))" class="closedCover">
+              </div>
+              <div (click)="pushRestaurant(r.key, r.name)">
+                <div class="discountBanner" *ngIf="global.restaurantInfo[r.key].discount != null && global.restaurantInfo[r.key].discount.amount != null && global.restaurantInfo[r.key].discount !== 0">
+                  <div *ngIf="global.restaurantInfo[r.key].discount.persistent == 0 && (global.readOnly == null || global.readOnly.hasEatenAt == null || global.readOnly.hasEatenAt[r.key] == null || global.readOnly.hasEatenAt[r.key] !== 1)">
+                    <div class="discountBannerTriangle"></div>
+                    <div class="discountBannerAmount">{{global.restaurantInfo[r.key].discount.amount*100}}%</div><div class="discountBannerLabel">off your first meal!</div>
+                  </div>
+                  <div *ngIf="global.restaurantInfo[r.key].discount.persistent == 1">
+                    <div class="discountBannerTriangleEvery"></div>
+                    <div class="discountBannerAmount">{{global.restaurantInfo[r.key].discount.amount*100}}%</div><div class="discountBannerLabelSpacing">off every visit! (excl. alcohol)</div>
+                  </div>
+                </div>
+                <img class="restaurantBoxImage" src="{{r.image}}">
+                <div class="restaurantBoxLabel">
+                  <div class="restaurantBoxLabelName">{{r.name}}</div>
+                  <div class="restaurantTypeLabel">
+                    <div *ngIf="r.popupLogic != null && r.popupLogic.pickup != null && r.popupLogic.pickup === 0">
+                      <div class="restaurantTypeText">Dine In Only</div>
+                    </div>
+                    <div *ngIf="r.popupLogic != null && r.popupLogic.pickup != null && r.popupLogic.pickup === 1">
+                      <div class="restaurantTypeText">Dine In & Pickup</div>
+                    </div>
+                    <div *ngIf="r.popupLogic != null && r.popupLogic.pickup != null && r.popupLogic.pickup === 2">
+                      <div class="restaurantTypeText">Pickup</div>
+                    </div>
+                  </div>
+                  <div class="restaurantBoxLabelAddress">{{r.address}}</div>
+                  <div *ngIf="r.hours != null">
+                    <div *ngIf="r.hours[day].start === r.hours[day].end">
+                      <div class="hoursLabel hoursLabelClosed">Closed Today</div>
+                    </div>
+                    <div *ngIf="r.hours[day].start !== r.hours[day].end">
+                      <div class="hoursLabel">{{hourToTime(r.hours[day].start)}} to {{hourToTime(r.hours[day].end)}}</div>
+                    </div>
+                  </div>
+                  <div class="waitTimeLabel">{{r.waitTime}} minutes</div>
+                </div>
+                
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="disclaimer"><b>Disclaimer: </b>A restaurant's being available on the Presto app does not imply Presto's partnership with the restaurant. Some of the displayed restaurants may not be partnered with Presto.</div>
+    </div>
+    <div id="searchResults" [style.display]="restaurantSearchDisplay">
+      <span style="font-family:'WorkSans-Bold'; font-size:16px;">Search Results</span>
+      <div *ngFor="let r of restaurantInfo">
+        <div *ngIf="r.launched != null && r.launched === 1">
+          <div class="restaurantBox" *ngIf="matchesSearch(r.name);">
+              <div (click)="pushRestaurant(r.key, r.name)" *ngIf="(r.hours != null && !(currHour >= r.hours[day].start && currHour < r.hours[day].end))" class="closedCover">
+              </div>
+              <div (click)="pushRestaurant(r.key, r.name)">
+                <div class="discountBanner" *ngIf="global.restaurantInfo[r.key].discount != null && global.restaurantInfo[r.key].discount.amount != null && global.restaurantInfo[r.key].discount !== 0">
+                  <div *ngIf="global.restaurantInfo[r.key].discount.persistent == 0 && (global.readOnly == null || global.readOnly.hasEatenAt == null || global.readOnly.hasEatenAt[r.key] == null || global.readOnly.hasEatenAt[r.key] !== 1)">
+                    <div class="discountBannerTriangle"></div>
+                    <div class="discountBannerAmount">{{global.restaurantInfo[r.key].discount.amount*100}}%</div><div class="discountBannerLabel">off your first meal!</div>
+                  </div>
+                  <div *ngIf="global.restaurantInfo[r.key].discount.persistent == 1">
+                    <div class="discountBannerTriangleEvery"></div>
+                    <div class="discountBannerAmount">{{global.restaurantInfo[r.key].discount.amount*100}}%</div><div class="discountBannerLabelSpacing">off every visit! (excl. alcohol)</div>
+                  </div>
+                </div>
+                <img class="restaurantBoxImage" src="{{r.image}}">
+                <div class="restaurantBoxLabel">
+                  <div class="restaurantBoxLabelName">{{r.name}}</div>
+                  <div class="restaurantTypeLabel">
+                    <div *ngIf="r.popupLogic != null && r.popupLogic.pickup != null && r.popupLogic.pickup === 0">
+                      <div class="restaurantTypeText">Dine In Only</div>
+                    </div>
+                    <div *ngIf="r.popupLogic != null && r.popupLogic.pickup != null && r.popupLogic.pickup === 1">
+                      <div class="restaurantTypeText">Dine In & Pickup</div>
+                    </div>
+                    <div *ngIf="r.popupLogic != null && r.popupLogic.pickup != null && r.popupLogic.pickup === 2">
+                      <div class="restaurantTypeText">Pickup</div>
+                    </div>
+                  </div>
+                  <div class="restaurantBoxLabelAddress">{{r.address}}</div>
+                  <div *ngIf="r.hours != null">
+                    <div *ngIf="r.hours[day].start === r.hours[day].end">
+                      <div class="hoursLabel hoursLabelClosed">Closed Today</div>
+                    </div>
+                    <div *ngIf="r.hours[day].start !== r.hours[day].end">
+                      <div class="hoursLabel">{{hourToTime(r.hours[day].start)}} to {{hourToTime(r.hours[day].end)}}</div>
+                    </div>
+                  </div>
+                  <div class="waitTimeLabel">{{r.waitTime}} minutes</div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

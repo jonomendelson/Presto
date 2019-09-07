@@ -1,0 +1,149 @@
+@font-face {
+    font-family: 'Lato-Light';
+    src: url('../assets/fonts/Lato-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato-Regular';
+    src: url('../assets/fonts/Lato-Regular.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'Lato-Bold';
+    src: url('../assets/fonts/Lato-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato-Black';
+    src: url('../assets/fonts/Lato-Black.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'WorkSans-ExtraBold';
+    src: url('../assets/fonts/WorkSans-ExtraBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'WorkSans-Light';
+    src: url('../assets/fonts/WorkSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'WorkSans-Medium';
+    src: url('../assets/fonts/WorkSans-Medium.ttf') format('truetype');
+}
+
+page-signin {
+	font-family: 'WorkSans-Light';
+	.content{
+		background-color:#59de97;
+	}
+
+	.toolbar-background{
+		background-color:#59de97;
+		border:0;
+	}
+
+	.bar-button{
+		color:#FFFFFF;
+	}
+
+	.loginButton{
+		width:calc(100%);
+		margin-top:22px;
+		background-color: #59de97;
+		font-family:'WorkSans-Bold';
+		padding:20px;
+		text-align:center;
+		
+		border:solid;
+		border-color:#FFFFFF;
+		border-radius:8px;
+		color:#FFFFFF;
+		border-width:1px;
+		font-size:150%;
+	}
+
+	.loginButton:active{
+		width:calc(100%);
+		margin-top:22px;
+		background-color: #FFFFFF;
+		font-family:'WorkSans-Bold';
+		padding:20px;
+		text-align:center;
+		
+		border:solid;
+		border-color:#59de97;
+		border-radius:8px;
+		color:#59de97;
+		border-width:1px;
+		font-size:150%;
+	}
+	.inputBox{
+		background-color:#E3FFE7;
+		color:#000000;
+		padding:15px;
+		margin:5px;
+		margin-left:20px;
+		margin-right:20px;
+		width:calc(100% - 40px);
+		border:none;
+	}
+	.logo{
+		width:80px;
+		margin-left:calc(50% - 40px);
+		margin-right:auto;
+		margin-top:40px;
+		margin-bottom:15px;
+		filter: brightness(3);
+	}
+	.logoText{
+		font-size:40px;
+		font-family:'WorkSans-ExtraBold';
+		text-align:center;
+		color:#FFFFFF;
+		margin-top:-35px;
+		text-transform:uppercase;
+	}
+	.loginFormWrapper{
+		display:block;
+		position:fixed;
+		top:calc(50vh - 200px);
+		width:calc(100% - 30px);
+		height:250px;
+	}
+	.registerText{
+		text-align:center;
+		font-family:'WorkSans-Light';
+		width:100%;
+	}
+	.registerButton{
+		color:#FFFFFF;
+		width:calc(100% - 80px);
+		margin-left:40px;
+		margin-bottom:30px;
+		margin-top:5px;
+		background-color: #99AABB;
+		font-family:'WorkSans-Bold';
+		border-radius:0px;
+	}
+	.footer{
+		margin-top:80px;
+	}
+	.loadingScreen{
+		font-size:24px;
+		font-family:'WorkSans-ExtraBold';
+		text-align:center;
+		margin-top:10px;
+	}
+	.forgotDiv{
+		font-size:16px;
+		font-family:'WorkSans-Light';
+		width:100%;
+		text-align:center;
+		margin-bottom:-10px;
+		margin-top:30px;
+	}
+}

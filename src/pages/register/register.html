@@ -1,0 +1,23 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+	<ion-navbar>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="fixed-content" no-bounce class="no-scroll">
+	<div class="loginFormWrapper" [style.display]="loginFormWrapperDisplay">
+		<!--<div class="categoryText" style="margin-top:0px;">Account Information</div>-->
+		<input #emailRef (click)="lastFocus='email';" autocorrect="off" autocapitalize="off" type="text" [(ngModel)]="email" class="inputBox" placeholder="Email">
+		<input #passwordRef (click)="lastFocus='password';" autocorrect="off" autocapitalize="off" type="password" [(ngModel)]="password" class="inputBox" placeholder="Password">
+		<input #cpasswordRef (click)="lastFocus='cpassword';" autocorrect="off" autocapitalize="off" type="password" [(ngModel)]="confirmPassword" class="inputBox" placeholder="Confirm Password">
+		<!--<div class="categoryText promoText">Referred by a friend? Earn them points when you make your first order by entering their referral code below.</div>
+		<input autocorrect="off" autocapitalize="off" type="text" [(ngModel)]="referralCode" (ngModelChange)="referralCode = $event.toLocaleUpperCase()" class="inputBox inputBoxRefCode" placeholder="CODE">-->
+		<div (click)="register(email, password)" class="loginButton">Register!</div>
+	</div>
+</ion-content>

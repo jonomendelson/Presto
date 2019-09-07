@@ -1,0 +1,52 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="dark">
+	<div class="pointsArea">
+		<div *ngIf="isDefined(global.readOnly.points)">
+			<div class="pointsText">{{global.readOnly.points}}</div>
+		</div>
+		<div *ngIf="!isDefined(global.readOnly.points)">
+			<div class="pointsText">0</div>
+		</div>
+		<div class="pointsSubtext">points</div>
+	</div>
+	<div class="userNameArea">{{global.user.userName}}</div>
+	<hr>
+	<div class="referralText">Referral Code: {{this.global.readOnly.refCode}}</div>
+	<div class="referralSubtext">Earn 500 points for each referred friend who orders a meal through Presto!</div>
+	<hr>
+	<div class="orderHistoryLabel">Order History</div>
+	<div class="orderHistoryFrame" id="orderHistoryFrame">
+		<div class="orderBox" *ngFor="let o of orders" (click)="presentOrder(o.key);">
+			<div *ngIf="goodFormatting(o);">
+				<div class="restaurantName">{{global.restaurantInfo[o.rid].name}}</div>
+				<div class="orderDate">{{milliToDate(o.orderTime)}}</div>
+				<div *ngIf="o.price === 0">
+					<div class="orderPrice">{{-o.points}} points</div>
+				</div>
+				<div *ngIf="o.price !== 0">
+					<div class="orderPrice">${{o.price.toFixed(2)}}</div>
+					<div class="progressBar" [style.width]="tackPercent(100*global.readOnly.points/(o.price*global.constants.pointsPerDollar))"></div>
+				</div>
+			</div>
+			<div *ngIf="!goodFormatting(o);">
+				Failed order.
+			</div>
+		</div>
+
+	</div>
+	<button ion-button class="signOutButton" (click)="signOut();">Sign Out</button>
+</ion-content>

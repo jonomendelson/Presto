@@ -1,0 +1,113 @@
+@font-face {
+    font-family: 'Lato-Light';
+    src: url('../assets/fonts/Lato-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato-Regular';
+    src: url('../assets/fonts/Lato-Regular.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'Lato-Bold';
+    src: url('../assets/fonts/Lato-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato-Black';
+    src: url('../assets/fonts/Lato-Black.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'WorkSans-ExtraBold';
+    src: url('../assets/fonts/WorkSans-ExtraBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'WorkSans-Light';
+    src: url('../assets/fonts/WorkSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'WorkSans-Medium';
+    src: url('../assets/fonts/WorkSans-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Libre-Regular';
+    src: url('../assets/fonts/LibreBaskerville-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Libre-Bold';
+    src: url('../assets/fonts/LibreBaskerville-Bold.ttf') format('truetype');
+}
+
+page-login {
+	font-family: 'WorkSans-Light';
+	.content{
+		background-color:#59de97;
+	}
+
+	.topDiv{
+		height:140px;
+		margin-top:calc(50vh - 160px);
+	}
+	.bottomDiv{
+		height:40px;
+		position:fixed;
+		width:calc(100% - 30px);
+		bottom:0px;
+	}
+	.leftDiv{
+		width:48%;
+		float:left;
+	}
+	.rightDiv{
+		width:48%;
+		float:right;
+	}
+	.bottomButton{
+		text-align:center;
+		font-family:'WorkSans-Light';
+		font-size:22px;
+		color:#FFFFFF;
+	}
+	.logo{
+		width:100px;
+		margin-left:calc(50% - 50px);
+		margin-right:auto;
+		
+		margin-bottom:15px;
+		filter: brightness(3);
+	}
+	.logoText{
+		font-size:50px;
+		font-family:'WorkSans-ExtraBold';
+		text-align:center;
+		color:#FFFFFF;
+		margin-top:-40px;
+		text-transform:uppercase;
+	}
+	.loadingContent{
+		height:80px;
+		margin-top:calc(50vh - 80px);
+	}
+	.loadingScreen{
+		font-size:30px;
+		font-family:'WorkSans-Bold';
+		text-align:center;
+		margin-top:10px;
+		width:100%;
+		height:100%;
+		color:#FFFFFF;
+		overflow:hidden;
+	}
+	.logoSmall{
+		width:50px;
+		margin-bottom:-15px;
+		filter: brightness(3);
+	}
+}

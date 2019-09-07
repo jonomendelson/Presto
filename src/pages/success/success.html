@@ -1,0 +1,30 @@
+<!--
+  Generated template for the SuccessPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+
+</ion-header>
+
+
+<ion-content padding class="green">
+	<ion-icon name="checkmark" class="successCheck"></ion-icon>
+	<div class="successText">Success!</div>
+	<div *ngIf="points &lt; 0">
+	You just spent <span class="pointNumber">{{-points}}</span> points and ordered a free meal!
+	</div>
+	<div *ngIf="points === 0">
+		<div class="instructionLabel">When you walk into the restaurant, just tell them you're "picking up for {{name}}".</div><br><br>
+	Your food should be ready in {{waitTime}} minutes! You'll receive an phone call from our staff if there are any changes to the status of your meal.
+	</div>
+	<div *ngIf="points &gt; 0">
+	Your food is on the way and you just earned <span class="pointNumber">{{points}}</span> points!
+	</div>
+</ion-content>
+
+<ion-footer>
+	<button ion-button class="homeButton" (click)="backToHome();">Close</button>
+</ion-footer>
